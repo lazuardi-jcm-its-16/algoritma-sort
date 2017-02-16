@@ -20,6 +20,8 @@ public class InsertionSort extends Sort{
     
     @Override
     public int[] sort(int[] arrayInput) {
+        startTimer();
+        
         for(int j=1; j < arrayInput.length; j++) {
             int i = 0;
             while(arrayInput[j] > arrayInput[i]) {
@@ -31,6 +33,8 @@ public class InsertionSort extends Sort{
             }
             arrayInput[i] = m;
         }
+        
+        stopTimer();
         return arrayInput;
     }
 }

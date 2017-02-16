@@ -11,7 +11,22 @@ package sorting;
  * @author rif
  */
 public abstract class Sort {
+    
+    private long startTime;
+    private long stopTime;
     public abstract int[] sort(int[] input);
+    
+    public void startTimer() {
+        startTime = System.nanoTime();
+    }
+    
+    public void stopTimer() {
+        stopTime = System.nanoTime();
+    }
+    
+    public long getExecutionTime() {
+        return (stopTime - startTime);
+    }
     
     public Integer Max(int[] input) {
         if(input.length > 0) {
@@ -39,7 +54,7 @@ public abstract class Sort {
     
     public Integer indexOf(int val, int[] input) {
         int i = 0;
-        while(i < input.length && val == input[i]) {
+        while(i < input.length && val != input[i]) {
             i++;
         }
         if(i < input.length)
@@ -51,7 +66,7 @@ public abstract class Sort {
     public int[] remove(int idx, int[] input) {
         int[] result = new int[input.length-1];
         for(int i=0; i<input.length-1; i++) {
-            if(i == idx)
+            if(i >= idx)
                 result[i] = input[i+1];
             else
                 result[i] = input[i];

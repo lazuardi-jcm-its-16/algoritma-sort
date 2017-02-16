@@ -6,6 +6,7 @@
 package sorting;
 
 
+
 /**
  *
  * @author rif
@@ -18,9 +19,17 @@ public class MergeSort extends Sort{
         return singleton;
     }
     
+    private boolean firstSort = true;
+    
     @Override
     public int[] sort(int[] input) {
+        if(firstSort) {
+            startTimer();
+            firstSort = false;
+        }
+        
         int[] L = new int[input.length];
+        
         if (input.length > 1) {
             int m = input.length/2;
             int[] listOne = new int[m];
@@ -36,10 +45,20 @@ public class MergeSort extends Sort{
                     j++;
                 }
             }
-              
-            if(listOne.length > 0 && listTwo.length > 0)
-                L = merge(sort(listOne),sort(listTwo));       
+           
+            if(listOne.length > 1)
+                listOne = sort(listOne);
+            if(listTwo.length > 1)
+                listTwo = sort(listTwo);
+            
+            L = merge(listOne, listTwo);
         }
+        else {
+            L[0] = input[0];
+        }
+        
+        firstSort = true;
+        stopTimer();
         return L;
     }
      

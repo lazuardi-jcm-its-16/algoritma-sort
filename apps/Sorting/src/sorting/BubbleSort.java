@@ -21,6 +21,8 @@ public class BubbleSort extends Sort{
     
     @Override
     public int[] sort(int[] arrayInput) {
+        startTimer();
+        
         if(arrayInput.length > 0) {
             for(int i=0 ; i < arrayInput.length-1; i++) {
                 for(int j=0; j < arrayInput.length-1-i; j++) {
@@ -34,6 +36,7 @@ public class BubbleSort extends Sort{
             }
         }
         
+        stopTimer();
         return arrayInput;
     }
 }

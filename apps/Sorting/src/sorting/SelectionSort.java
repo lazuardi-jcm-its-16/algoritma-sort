@@ -21,6 +21,8 @@ public class SelectionSort extends Sort{
     
     @Override
     public int[] sort(int[] input) {
+        startTimer();
+        
         int[] sorted = new int[input.length];
         int i = 0;
         do {
@@ -30,6 +32,7 @@ public class SelectionSort extends Sort{
             i++;
         } while (input.length > 0);
         
+        stopTimer();
         return sorted;
     }
     

@@ -5,7 +5,10 @@
  */
 package sorting;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -18,13 +21,22 @@ public class Sorting {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        int[] input = new int[4];
-        input[0] = 8;
-        input[1] = 5;
-        input[2] = 1;
-        input[3] = 3;
+        int n = 1000000;
+        List<Integer> list = new ArrayList<>();    
+        new Random().ints(n, Integer.MIN_VALUE, Integer.MAX_VALUE).forEach(x -> list.add(x));
         
-        System.out.println(Arrays.toString(MergeSort.getInstance().sort(input)));
-    }
+        int[] input = list.stream().mapToInt(i->i).toArray();
+        
+        BubbleSort.getInstance().sort(input);
+        InsertionSort.getInstance().sort(input);
+        SelectionSort.getInstance().sort(input);
+        MergeSort.getInstance().sort(input);
+        
+        System.out.println(n + " item");
+        System.out.println(BubbleSort.class + " " + BubbleSort.getInstance().getExecutionTime() + " ");
+        System.out.println(InsertionSort.class + " " + InsertionSort.getInstance().getExecutionTime() + " ");
+        System.out.println(SelectionSort.class + " " + SelectionSort.getInstance().getExecutionTime() + " ");
+        System.out.println(MergeSort.class + " " + MergeSort.getInstance().getExecutionTime() + " ");
+}
     
 }
